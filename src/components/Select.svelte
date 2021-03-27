@@ -1,17 +1,14 @@
 <script>
-  import { currencies } from './converterCurrencies';
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
-  export let name = '',
-    value = '',
-    currency = {};
+  export let currencies, name, value;
 </script>
 
 <select
   on:click={() => {
-    dispatch('onSelect', { value: currency });
+    dispatch('onSelect');
   }}
   {name}
   id={name}

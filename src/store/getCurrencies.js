@@ -1,4 +1,5 @@
-import { get, writable } from 'svelte/store';
+import { onMount } from 'svelte';
+import data, { addData } from './data';
 
 const url = `http://localhost:2000/api/currencies`;
 
@@ -12,10 +13,15 @@ export const getCurrencies = async () => {
   }
 };
 
-export const myCurrencies = [
+export const currencies = [
   { name: 'Bitcoin', pair: 'USD', value: '54603.70' },
   { name: 'Bolívar', pair: 'USD', value: '1827910.57' },
   { name: 'Dólar estadounidense', pair: 'PEL', value: 1 },
   { name: 'Peso libre', pair: 'USD', value: 1 },
   { name: 'Pi', pair: 'BTC', value: '0.00013282' }
 ];
+
+onMount(() => {
+  addData.currencies(currencies);
+  console.log($data);
+});
