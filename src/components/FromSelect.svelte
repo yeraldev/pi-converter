@@ -1,13 +1,28 @@
 <script>
-  import { currencies, fromCurrency } from '../store/data';
+  import { converterCurrencies } from './../store/converterCurrencies.js';
+  import { beforeUpdate } from 'svelte';
+  import {
+    currencies,
+    fromCurrency,
+    fromAmount,
+    toCurrency
+  } from './../store/data.js';
   import FromInput from './FromInput.svelte';
 
   let currency = {};
 
-  const onSelect = () => {
-    fromCurrency.add(currency);
-    console.log($fromCurrency);
+  const onSelect = async () => {
+    fromCurrency.add(currency, $fromAmount);
+    converterCurrencies($fromCurrency, $toCurrency);
   };
+
+  // beforeUpdate(() => {
+  //   fromCurrency.add(currency, $fromAmount);
+  //   fromAmount.add($fromAmount);
+
+  //   console.log($fromCurrency);
+  //   console.log($fromAmount);
+  // });
 </script>
 
 <select

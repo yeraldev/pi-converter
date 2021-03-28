@@ -20,7 +20,12 @@ const setCurrency = () => {
   const { subscribe, set } = writable({});
 
   const add = (data, amount) => {
-    set({ ...data, amount: parseFloat(amount) });
+    set({
+      name: data.name,
+      value: parseFloat(data.value),
+      pair: data.pair,
+      amount: parseFloat(amount)
+    });
   };
 
   return { subscribe, add };
@@ -32,6 +37,16 @@ export const toCurrency = setCurrency();
 
 // Set Amount
 
-export const setAmount = derived(fromCurrency, ($fromCurrency, set) => {
-  set({ ...$fromCurrency, amount: data });
-});
+const setAmount = () => {
+  const { subscribe, set } = writable('');
+
+  const add = data => {
+    set(data);
+  };
+
+  return { subscribe, add };
+};
+
+export const fromAmount = setAmount();
+
+export const toAmount = setAmount();

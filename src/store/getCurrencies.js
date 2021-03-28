@@ -1,4 +1,3 @@
-import { onMount } from 'svelte';
 import { currencies } from './data';
 
 const url = `http://localhost:2000/api/currencies`;

@@ -1,7 +1,12 @@
-import data, { addData } from './data';
+import { getCurrencies } from './getCurrencies';
+import { toAmount } from './data';
 
 // getting & spread currencies
-const [btc, ves, usd, pel, pi] = $data.currencies;
+let btc, ves, usd, pel, pi;
+
+const spread = (() => {
+  [btc, ves, usd, pel, pi] = getCurrencies;
+})();
 
 // Pi to any
 const fromPi = (from, to) => {
@@ -10,10 +15,12 @@ const fromPi = (from, to) => {
       // btc = pi.value * amout;
       break;
     case 'Bolívar':
-      // ves = pi.value * btc.value * ves.value * amount;
+      // toAmount.add(
+      //   parseFloat(pi.value * btc.value * ves.value * from.amount).toFixed(2)
+      // );
       break;
     case 'Dólar estadounidense':
-      to.amount = parseFloat(from.value * btc.value * from.amount).toFixed(2);
+      toAmount.add(parseFloat(from.value * btc.value * from.amount).toFixed(2));
       break;
     case 'Peso libre':
       // to.amount = from.value;
@@ -31,7 +38,7 @@ const fromUsd = (from, to) => {
       // ves = pi.value * btc.value * ves.value * amount;
       break;
     case 'Pi':
-      console.log(to.amount);
+      // toAmount.add();
       break;
     case 'Peso libre':
       // to.amount = from.value;
@@ -40,7 +47,7 @@ const fromUsd = (from, to) => {
 };
 
 export const converterCurrencies = (from, to) => {
-  if (!from.amount) from.amount = 1;
+  console.log(from);
   switch (from.name) {
     case 'Pi':
       fromPi(from, to);

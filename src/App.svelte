@@ -1,7 +1,5 @@
 <script>
   import CurrenciesCard from './CurrenciesCard.svelte';
-  import FromInput from './components/FromInput.svelte';
-  import ToInput from './components/ToInput.svelte';
 </script>
 
 <main>
@@ -22,6 +20,15 @@
     font-size: 4em;
     font-weight: 100;
   } */
+
+  :global(input[type='number'])::-webkit-inner-spin-button,
+  :global(input[type='number'])::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  :global(input[type='number']) {
+    -moz-appearance: textfield;
+  }
 
   @media (min-width: 640px) {
     main {
