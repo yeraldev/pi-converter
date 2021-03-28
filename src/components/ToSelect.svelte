@@ -1,5 +1,5 @@
 <script>
-  import { converterCurrencies } from './../store/converterCurrencies.js';
+  import { converterTo } from '../store/converterTo.js';
   import {
     currencies,
     toCurrency,
@@ -12,13 +12,13 @@
   let currency = {};
 
   const onSelect = () => {
-    toCurrency.add(currency);
-    converterCurrencies($toCurrency, $fromCurrency);
+    toCurrency.add(currency, $toAmount);
+    // converterTo($toCurrency, $fromCurrency);
   };
 
   // beforeUpdate(() => {
   //   toCurrency.add(currency, $toAmount);
-  //   toAmount.add($toAmount);
+  //   // toAmount.add($toAmount);
 
   //   console.log($toCurrency);
   //   console.log($toAmount);
@@ -31,6 +31,7 @@
   name="toCurrency"
   id="toCurrency"
 >
+  <option>Select</option>
   {#each $currencies as currency}
     <option value={currency}>{currency.name}</option>
   {/each}

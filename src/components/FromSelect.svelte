@@ -1,5 +1,5 @@
 <script>
-  import { converterCurrencies } from './../store/converterCurrencies.js';
+  import { converterFrom } from '../store/converterFrom.js';
   import { beforeUpdate } from 'svelte';
   import {
     currencies,
@@ -13,15 +13,12 @@
 
   const onSelect = async () => {
     fromCurrency.add(currency, $fromAmount);
-    converterCurrencies($fromCurrency, $toCurrency);
+    // converterFrom($fromCurrency, $toCurrency);
   };
 
   // beforeUpdate(() => {
   //   fromCurrency.add(currency, $fromAmount);
   //   fromAmount.add($fromAmount);
-
-  //   console.log($fromCurrency);
-  //   console.log($fromAmount);
   // });
 </script>
 
@@ -31,6 +28,7 @@
   name="fromSelect"
   id="fromSelect"
 >
+  <option>Select</option>
   {#each $currencies as currency}
     <option value={currency}>{currency.name}</option>
   {/each}

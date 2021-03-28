@@ -1,5 +1,5 @@
 <script>
-  import { converterCurrencies } from './../store/converterCurrencies.js';
+  import { converterFrom } from '../store/converterFrom.js';
   import { fromCurrency, fromAmount, toCurrency } from './../store/data.js';
 
   const addAmount = e => {
@@ -8,7 +8,7 @@
     fromCurrency.add($fromCurrency, amount);
     fromAmount.add(amount);
 
-    converterCurrencies($fromCurrency, $toCurrency);
+    converterFrom($fromCurrency, $toCurrency);
   };
 </script>
 
