@@ -1,19 +1,19 @@
 import { onMount } from 'svelte';
-import data, { addData } from './data';
+import { currencies } from './data';
 
 const url = `http://localhost:2000/api/currencies`;
 
-export const getCurrencies = async () => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.currencies;
-  } catch (e) {
-    throw e.message;
-  }
-};
+// export const getCurrencies = async () => {
+//   try {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     return data.currencies;
+//   } catch (e) {
+//     throw e.message;
+//   }
+// };
 
-export const currencies = [
+export const getCurrencies = [
   { name: 'Bitcoin', pair: 'USD', value: '54603.70' },
   { name: 'Bolívar', pair: 'USD', value: '1827910.57' },
   { name: 'Dólar estadounidense', pair: 'PEL', value: 1 },
@@ -21,7 +21,6 @@ export const currencies = [
   { name: 'Pi', pair: 'BTC', value: '0.00013282' }
 ];
 
-onMount(() => {
-  addData.currencies(currencies);
-  console.log($data);
-});
+export const getting = () => {
+  currencies.add(getCurrencies);
+};

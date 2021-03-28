@@ -1,12 +1,7 @@
-import { myCurrencies } from './getCurrencies';
+import data, { addData } from './data';
 
 // getting & spread currencies
-export let currencies, btc, ves, usd, pel, pi;
-
-export const onLoad = async () => {
-  currencies = myCurrencies;
-  [btc, ves, usd, pel, pi] = currencies;
-};
+const [btc, ves, usd, pel, pi] = $data.currencies;
 
 // Pi to any
 const fromPi = (from, to) => {
@@ -18,11 +13,7 @@ const fromPi = (from, to) => {
       // ves = pi.value * btc.value * ves.value * amount;
       break;
     case 'Dólar estadounidense':
-      console.log(pi.value);
-      console.log(btc.value);
-      console.log(fromAmount);
       to.amount = parseFloat(from.value * btc.value * from.amount).toFixed(2);
-      console.log(to.amount);
       break;
     case 'Peso libre':
       // to.amount = from.value;

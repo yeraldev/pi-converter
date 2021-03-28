@@ -1,22 +1,37 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
-export default data;
+// Currencies
 
-const data = writable({
-  currencies: Object.freeze([]),
-  fromCurrency: Object.freeze({}),
-  toCurrency: Object.freeze({})
-});
+const setCurrencies = () => {
+  const { subscribe, set } = writable([]);
 
-export const addData = newData => {
-  return {
-    currencies: () =>
-      update(
-        $data =>
-          ($data.currencies = Object.freeze([...$data.currencies, newData]))
-      ),
-    from: () =>
-      update($data => ($data.fromCurrency = Object.freeze({ newData }))),
-    to: () => update($data => ($data.toCurrency = Object.freeze({ newData })))
+  const add = data => {
+    set([...data]);
   };
+
+  return { subscribe, add };
 };
+
+export const currencies = setCurrencies();
+
+// Set Currency
+
+const setCurrency = () => {
+  const { subscribe, set } = writable({});
+
+  const add = (data, amount) => {
+    set({ ...data, amount: parseFloat(amount) });
+  };
+
+  return { subscribe, add };
+};
+
+export const fromCurrency = setCurrency();
+
+export const toCurrency = setCurrency();
+
+// Set Amount
+
+export const setAmount = derived(fromCurrency, ($fromCurrency, set) => {
+  set({ ...$fromCurrency, amount: data });
+});
