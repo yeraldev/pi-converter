@@ -1,5 +1,12 @@
 import { derived, writable } from 'svelte/store';
 
+export default data;
+
+const data = {
+  currencies,
+  fromCurrency,
+  toCurrency
+};
 // Currencies
 
 const setCurrencies = () => {

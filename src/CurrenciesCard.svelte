@@ -1,6 +1,6 @@
 <script>
-  import FromSelect from './components/FromSelect.svelte';
-  import ToSelect from './components/ToSelect.svelte';
+  import FromSelect from './components/converterComponents/FromSelect.svelte';
+  import ToSelect from './components/converterComponents/ToSelect.svelte';
   import { getting } from './store/getCurrencies';
   import { onMount } from 'svelte';
 
@@ -13,9 +13,6 @@
   <div>
     <FromSelect />
   </div>
-  <!-- <div>
-    <button on:click={toSwitch}> switch </button>
-  </div> -->
   <div>
     <ToSelect />
   </div>

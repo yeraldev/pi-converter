@@ -25,6 +25,9 @@ const fromPi = (from, to) => {
     case 'Peso libre':
       fromAmount.add(parseFloat(pi.value * btc.value * from.amount).toFixed(2));
       break;
+    default:
+      toAmount.add(parseFloat(from.amount));
+      break;
   }
 };
 
@@ -42,6 +45,9 @@ const fromUsd = (from, to) => {
       break;
     case 'Peso libre':
       fromAmount.add(parseFloat(from.amount * pel.value).toFixed(2));
+      break;
+    default:
+      toAmount.add(parseFloat(from.amount));
       break;
   }
 };
@@ -62,6 +68,9 @@ const fromBtc = (from, to) => {
       break;
     case 'Peso libre':
       fromAmount.add(parseFloat(from.amount * btc.value).toFixed(2));
+      break;
+    default:
+      toAmount.add(parseFloat(from.amount));
       break;
   }
 };
@@ -84,6 +93,9 @@ const fromVes = (from, to) => {
       break;
     case 'Peso libre':
       fromAmount.add(parseFloat(from.amount / ves.value).toFixed(2));
+      break;
+    default:
+      toAmount.add(parseFloat(from.amount));
       break;
   }
 };

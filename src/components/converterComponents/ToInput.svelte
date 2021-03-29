@@ -1,6 +1,6 @@
 <script>
-  import { toCurrency, toAmount, fromCurrency } from '../store/data';
-  import { converterTo } from '../store/converterTo.js';
+  import { toCurrency, toAmount, fromCurrency } from '../../store/data';
+  import { converterTo } from '../../store/converterTo.js';
 
   const addAmount = e => {
     const amount = e.currentTarget.value;
