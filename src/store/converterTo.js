@@ -1,12 +1,11 @@
-import { getCurrencies } from './getCurrencies';
 import { fromAmount } from './data';
 
 // getting & spread currencies
 let pi, btc, ves, usd, pel;
 
-const spread = (() => {
-  [pi, btc, ves, usd, pel] = getCurrencies;
-})();
+export const spreadTo = data => {
+  [pi, btc, ves, usd, pel] = data;
+};
 
 // From Pi
 const fromPi = (from, to) => {
@@ -14,7 +13,7 @@ const fromPi = (from, to) => {
     case 'Bitcoin':
       fromAmount.add(parseFloat(pi.value * from.amount).toFixed(8));
       break;
-    case 'Bolívar':
+    case 'Bolívar venezolano':
       fromAmount.add(
         parseFloat(pi.value * btc.value * ves.value * from.amount).toFixed(2)
       );
@@ -26,7 +25,7 @@ const fromPi = (from, to) => {
       fromAmount.add(parseFloat(pi.value * btc.value * from.amount).toFixed(2));
       break;
     default:
-      toAmount.add(parseFloat(from.amount));
+      fromAmount.add(parseFloat(from.amount));
       break;
   }
 };
@@ -40,14 +39,14 @@ const fromUsd = (from, to) => {
     case 'Bitcoin':
       fromAmount.add(parseFloat(from.amount / btc.value).toFixed(8));
       break;
-    case 'Bolívar':
+    case 'Bolívar venezolano':
       fromAmount.add(parseFloat(from.amount * ves.value).toFixed(2));
       break;
     case 'Peso libre':
       fromAmount.add(parseFloat(from.amount * pel.value).toFixed(2));
       break;
     default:
-      toAmount.add(parseFloat(from.amount));
+      fromAmount.add(parseFloat(from.amount));
       break;
   }
 };
@@ -61,7 +60,7 @@ const fromBtc = (from, to) => {
     case 'Dólar estadounidense':
       fromAmount.add(parseFloat(from.amount * btc.value).toFixed(2));
       break;
-    case 'Bolívar':
+    case 'Bolívar venezolano':
       fromAmount.add(
         parseFloat(from.amount * btc.value * ves.value).toFixed(2)
       );
@@ -70,7 +69,7 @@ const fromBtc = (from, to) => {
       fromAmount.add(parseFloat(from.amount * btc.value).toFixed(2));
       break;
     default:
-      toAmount.add(parseFloat(from.amount));
+      fromAmount.add(parseFloat(from.amount));
       break;
   }
 };
@@ -95,13 +94,12 @@ const fromVes = (from, to) => {
       fromAmount.add(parseFloat(from.amount / ves.value).toFixed(2));
       break;
     default:
-      toAmount.add(parseFloat(from.amount));
+      fromAmount.add(parseFloat(from.amount));
       break;
   }
 };
 
 export const converterTo = (from, to) => {
-  console.log(from);
   switch (from.name) {
     case 'Pi':
       fromPi(from, to);
@@ -114,7 +112,7 @@ export const converterTo = (from, to) => {
     case 'Dólar estadounidense':
       fromUsd(from, to);
       break;
-    case 'Bolívar':
+    case 'Bolívar venezolano':
       fromVes(from, to);
       break;
   }

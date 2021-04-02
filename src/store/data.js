@@ -1,14 +1,7 @@
-import { derived, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 
-export default data;
-
-const data = {
-  currencies,
-  fromCurrency,
-  toCurrency
-};
 // Currencies
-
+export default currencies;
 const setCurrencies = () => {
   const { subscribe, set } = writable([]);
 
@@ -22,7 +15,6 @@ const setCurrencies = () => {
 export const currencies = setCurrencies();
 
 // Set Currency
-
 const setCurrency = () => {
   const { subscribe, set } = writable({});
 
@@ -43,7 +35,6 @@ export const fromCurrency = setCurrency();
 export const toCurrency = setCurrency();
 
 // Set Amount
-
 const setAmount = () => {
   const { subscribe, set } = writable('');
 
@@ -57,3 +48,5 @@ const setAmount = () => {
 export const fromAmount = setAmount();
 
 export const toAmount = setAmount();
+
+export const toAmountInfo = setAmount();
