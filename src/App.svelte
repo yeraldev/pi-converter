@@ -2,7 +2,6 @@
   import { spreadTo } from './store/converterTo.js';
   import { spreadFrom } from './store/converterFrom.js';
   import { currencies } from './store/data.js';
-  import { getCurrencies } from './store/getCurrencies.js';
   import Footer from './components/footer/Footer.svelte';
   import Navbar from './components/header/Navbar.svelte';
   import ConverterCard from './components/body/ConverterCard.svelte';
@@ -10,28 +9,41 @@
   import InfoCard2 from './components/body/InfoCard2.svelte';
   import { onMount } from 'svelte';
 
-  let load = true;
+  const url = `http://localhost:3000/api/currencies`;
+  // const url = `https://pi-converter-api.herokuapp.com/api/currencies`;
 
-  onMount(async () => {
-    const res = await getCurrencies();
-    console.log(res);
-    await spreadFrom(res);
-    await spreadTo(res);
-    await currencies.add(res);
-    // console.log($currencies);
-    load = $currencies && $currencies.length ? true : false;
-  });
+  const loader = async () => {
+    try {
+      const response = await fetch(url, { method: 'GET', mode: 'cors' });
+      const data = await response.json();
+      await spreadFrom(data);
+      await spreadTo(data);
+      await currencies.add(data);
+
+      return new Promise(resolve => resolve(data));
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  const loaded = loader();
 </script>
 
 <Navbar />
 <main>
-  {#if load}
-    <div class="content">
-      <InfoCard />
-      <ConverterCard />
-      <InfoCard2 />
-    </div>
-  {/if}
+  {#await loaded}
+    <p>Cargando...</p>
+  {:then data}
+    <InfoCard />
+    <ConverterCard />
+    <InfoCard2 />
+  {:catch error}
+    <button
+      on:click={() => {
+        location.reload();
+      }}>ocurrio un error</button
+    >
+  {/await}
 </main>
 <Footer />
 

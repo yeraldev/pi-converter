@@ -59,6 +59,7 @@
 <style>
   span {
     text-decoration: underline;
+    cursor: pointer;
   }
   span:hover {
     color: #001d47;
