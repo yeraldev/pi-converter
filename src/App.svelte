@@ -7,10 +7,11 @@
   import ConverterCard from './components/body/ConverterCard.svelte';
   import InfoCard from './components/body/InfoCard1.svelte';
   import InfoCard2 from './components/body/InfoCard2.svelte';
-  import { onMount } from 'svelte';
 
-  const url = `http://localhost:3000/api/currencies`;
-  // const url = `https://pi-converter-api.herokuapp.com/api/currencies`;
+  // const url = `http://localhost:3000/api/currencies`;
+  const baseUrl = process.env.BASE_URL;
+  const path = `api/currencies`;
+  const url = `${baseUrl}${path}`;
 
   const loader = async () => {
     try {
@@ -41,7 +42,7 @@
     <button
       on:click={() => {
         location.reload();
-      }}>ocurrio un error</button
+      }}>Ocurrió un error</button
     >
   {/await}
 </main>
