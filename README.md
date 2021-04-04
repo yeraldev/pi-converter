@@ -16,4 +16,4 @@ experience.
 All the functionality described above is inspired by the currency converter
 offered by the google search engine.
 
-<p> <img alt="screenshot of google search currency converter" src="/btcusd.png"> </p>
+<p> <img alt="screenshot of google search currency converter" src="/public/btcusd.png"> </p>
