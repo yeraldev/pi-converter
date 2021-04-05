@@ -38,6 +38,7 @@
 <div>
   <select
     on:click={onSelect}
+    on:blur={onSelect}
     bind:value={currency}
     name="fromSelect"
     id="fromSelect"

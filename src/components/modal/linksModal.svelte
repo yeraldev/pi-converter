@@ -36,7 +36,7 @@
       showLinks = true;
     }}
   >
-    Enlaces de interes
+    Enlaces de interés
   </span>
 </div>
 

@@ -35,6 +35,7 @@
 <div>
   <select
     on:click={onSelect}
+    on:blur={onSelect}
     bind:value={currency}
     name="toCurrency"
     id="toCurrency"
