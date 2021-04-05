@@ -1,4 +1,5 @@
 <script>
+  import { getCurrencies } from './store/getCurrencies.js';
   import { spreadTo } from './store/converterTo.js';
   import { spreadFrom } from './store/converterFrom.js';
   import { currencies } from './store/data.js';
@@ -8,15 +9,9 @@
   import InfoCard from './components/body/InfoCard1.svelte';
   import InfoCard2 from './components/body/InfoCard2.svelte';
 
-  // const url = `http://localhost:3000/api/currencies`;
-  const baseUrl = process.env.BASE_URL;
-  const path = `api/currencies`;
-  const url = `${baseUrl}${path}`;
-
   const loader = async () => {
     try {
-      const response = await fetch(url, { method: 'GET', mode: 'cors' });
-      const data = await response.json();
+      const data = await getCurrencies();
       await spreadFrom(data);
       await spreadTo(data);
       await currencies.add(data);

@@ -8,7 +8,6 @@
     setInterval(() => {
       const newDate = new Date(Date.now());
       toLocaleDate = newDate.toLocaleString();
-      return toLocale;
     }, 1000);
   };
 

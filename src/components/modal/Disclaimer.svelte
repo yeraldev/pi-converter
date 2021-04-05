@@ -47,13 +47,13 @@
           rel="noopener noreferrer">Pi</a
         >,
         <a
-          href="https://es.investing.com/crypto/bitcoin/btc-usd"
+          href="https://www.google.com/search?q=btc+usd"
           target="_blank"
           rel="noopener noreferrer">Bitcoin</a
         >
         y
         <a
-          href="https://es.investing.com/currencies/usd-vef"
+          href="http://www.bcv.org.ve/"
           target="_blank"
           rel="noopener noreferrer">Bolivar venezolano</a
         >.
